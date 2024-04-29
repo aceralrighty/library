@@ -27,16 +27,17 @@ You will have sixteen files total in this project:
          - InventoryTests
          - LibraryTests
 
-![alt text](image-1.png)
+![img_6.png](img_6.png)
 ### Collection Enum
 - Create an enum called Collection that includes at least five types of collections that a piece of library material could be in
 
 Example class diagram. You get to choose your own collection enums.
+
 ![img.png](img.png)
 
 ### Inventory class
-- 1Inventory1 will keep track of all the materials in the library and their status
-- Make sure that the methods and ArrayList of materials are static, so they can be accessed without instantiating an 1Inventory1 object
+- `Inventory` will keep track of all the materials in the library and their status
+- Make sure that the methods and ArrayList of materials are static, so they can be accessed without instantiating an `Inventory` object
 - Create all the fields and methods shown in the example class diagram below 
 
 ![img_1.png](img_1.png)
