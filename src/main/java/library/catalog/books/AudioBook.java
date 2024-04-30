@@ -1,19 +1,29 @@
 package library.catalog.books;
 
+import library.Collection;
+
+
 public class AudioBook extends Book{
     private String readByFirstName;
     private String readByLastName;
     private double lengthInMinutes;
 
-    public AudioBook(String authorLastName, String authorFirstName, int publicationYear, String publisher, String title, String isbn, String readByFirstName, String readByLastName, double lengthInMinutes) {
-        super(authorLastName, authorFirstName, publicationYear, publisher, title, isbn);
-        this.readByFirstName = readByFirstName;
-        this.readByLastName = readByLastName;
-        this.lengthInMinutes = lengthInMinutes;
+    public AudioBook(String callNumber, Collection collection, boolean onHold, boolean checkOut, String authorFirstName, String authorLastName, int publishedYear, String publisher, String title, String ISBN, String readByFirstName, String readByLastName, double lengthInMinutes) {
+        super(callNumber, collection, onHold, checkOut, authorFirstName, authorLastName, publishedYear, publisher, title, ISBN);
+        setReadByFirstName(readByFirstName);
+        setReadByLastName(readByLastName);
+        setLengthInMinutes(lengthInMinutes);
+
     }
     @Override
     public String toString() {
-
+        return STR."""
+\{super.toString()}
+Title\{getTitle()}
+Author: \{getAuthorFirstName()} \{getAuthorLastName()}
+ISBN: \{getIsbn()}
+Minutes: \{getLengthInMinutes()}
+Read by: \{getReadByLastName()}, \{getReadByFirstName()}""";
     }
 
     public String getReadByFirstName() {

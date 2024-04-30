@@ -1,26 +1,34 @@
 package library;
 
+/**
+ * my very nice enums
+ * @author Adam Ziv
+ */
+
 public enum Collection {
-    CHILDRENS_DVD("The land before time"),
-    FICTION("The Lord of the Flies"),
-    TEEN_NON_FICTION("The Giver"),
-    AUDIO_BOOK("The Chronicles Of Amber"),
-    DVD("Dune: Part Two"),
-    BOARD_GAMES("Monopoly"),
-    CHILDRENS_FICTION("Barney"),
-    AUDIO_CD("Barney's Playtime"),
-    CHILDRENS_MUSIC_CD("Barney's Music CD"),
-    SCIFI_FANTASY("Rendezvous with Rama"),
-    ANIME("Akira"),
-    TEEN_FICTION("Twilight"),
-    CHILDRENS_NON_FICTION("Bouncing babies"),
-    HOME_AND_GARDEN("Green thumb");
+    CHILDRENS_DVD("Children DVD"),
+    FICTION("Fiction"),
+    TEEN_NON_FICTION("Teen Non Fiction"),
+    AUDIO_BOOK("Audio book"),
+    DVD("DVD"),
+    BOARD_GAMES("Board Games"),
+    CHILDRENS_FICTION("Children Fiction"),
+    AUDIO_CD("Audio CD"),
+    CHILDRENS_MUSIC_CD("Children Music CD"),
+    SCIFI_FANTASY("Sci-fi Fantasy"),
+    ANIME("Anime"),
+    TEEN_FICTION("Teen Fiction"),
+    CHILDRENS_NON_FICTION("Children Non Fiction"),
+    HOME_AND_GARDEN("Home and Garden"),
+    BOOK("Book"),
+    MOVIE("Movie"),
+    MUSIC("Music");
     private String collectionName;
 
 
 
     Collection(String collectionName){
-
+        this.collectionName = collectionName;
     }
 
     public String getCollectionName() {

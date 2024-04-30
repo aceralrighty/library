@@ -1,25 +1,37 @@
 package library;
 
+import library.multimedia.Multimedia;
+
+/**
+ * this is my super class
+ */
+
 public abstract class Material {
     private String callNumber;
     private boolean onHold;
-    private Collection collection;
+    public Collection collection;
     private boolean checkedOut;
 
     public boolean isOnHold(){
-        return true;
+        return onHold;
     }
 
+    // parameterized constructor
     public Material(String callNumber, boolean onHold, Collection collection, boolean checkedOut) {
-        this.callNumber = callNumber;
-        this.onHold = onHold;
-        this.collection = collection;
-        this.checkedOut = checkedOut;
+        setCallNumber(callNumber);
+        setOnHold(onHold);
+        setCollection(collection);
+        setCheckedOut(checkedOut);
     }
-
+// my very nice toString
     @Override
     public String toString() {
-        return "";
+        return STR."""
+
+Call number: \{getCallNumber()}
+Collection: \{getCollection()}
+Checked out: \{isCheckedOut()}
+On hold: \{isOnHold()}""";
     }
 
 

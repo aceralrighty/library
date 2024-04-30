@@ -1,17 +1,20 @@
 package library.multimedia;
 
 public enum MusicGenre {
-    JAzz("Miles Davis"),
-    CLASSIC_ROCK("Led Zeppelin"),
-    HIP_HOP("Run DMC"),
-    POP("Ariana Grande"),
-    COUNTRY("Johnny Cash"),
-    ALTERNATIVE_ROCK("Skillet");
+    JAZZ("JAZZ"),
+    CLASSIC_ROCK("Classic Rock"),
+    HIP_HOP("Hip-Hop"),
+    POP("POP"),
+    COUNTRY("Country"),
+    ALTERNATIVE_ROCK("Alternative Rock");
 
     private String musicGenre;
 
     MusicGenre(String musicGenre) {
-
+        this.musicGenre = musicGenre;
     }
 
+    public String getMusicGenre() {
+        return musicGenre;
+    }
 }

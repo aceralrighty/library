@@ -1,20 +1,21 @@
 package library.multimedia;
 
 public enum MovieGenre {
-    FEATURE_FILM("Pulp Fiction"),
-    ACTION_AND_ADVENTURE("John Wick"),
-    SCIENCE_FICTION("Dune: Part Two"),
-    DRAMA("A Few Good Men"),
-    CHILDREN("Daddy Day Care"),
-    FANTASY("The Hobbit"),
-    FICTION("Mystic River"),
-    COMEDY("Happy Gilmore"),
-    SPANISH("Bardo: False Chronicles of a Handful of Truths"),
-    ROMANCE("The Notebook");
+    FEATURE_FILM("Feature Film"),
+    ACTION_AND_ADVENTURE("Action And Adventure"),
+    SCIENCE_FICTION("Science Fiction"),
+    DRAMA("Drama"),
+    CHILDREN("Children"),
+    FANTASY("Fantasy"),
+    FICTION("Fiction"),
+    COMEDY("Comedy"),
+    SPANISH("Spanish"),
+    ROMANCE("Romance");
 
     private String movieGenre;
-    MovieGenre(String movieGenre) {
 
+    MovieGenre(String MovieGenre) {
+        this.movieGenre = MovieGenre;
     }
 
     public String getMovieGenre() {

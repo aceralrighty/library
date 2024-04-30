@@ -1,7 +1,12 @@
 package library.catalog.books;
 
+import library.Collection;
 import library.Material;
 
+/**
+ * this is super class that is also a subclass of Material
+ * @author Adam Ziv
+ */
 public abstract class Book extends Material {
     private String authorLastName;
     private String authorFirstName;
@@ -10,19 +15,29 @@ public abstract class Book extends Material {
     private String title;
     private String isbn;
 
+//    nice toString, not to toot my own horn or anything 🤭
     @Override
     public String toString() {
-        return super.toString() + "";
+        String books = super.toString();
+         books += STR."""
+
+Author: \{getAuthorFirstName()}, \{getAuthorLastName()}
+Published year: \{getPublicationYear()}
+Publisher: \{getPublisher()}
+Title: \{getTitle()}
+ISBN: \{getIsbn()}""";
+         return books;
     }
 
-    public Book(String authorLastName, String authorFirstName, int publicationYear, String publisher, String title, String isbn) {
-        super();
-        this.authorLastName = authorLastName;
-        this.authorFirstName = authorFirstName;
-        this.publicationYear = publicationYear;
-        this.publisher = publisher;
-        this.title = title;
-        this.isbn = isbn;
+//    Parameterized constructor
+    public Book(String callNumber, Collection collection, boolean onHold, boolean checkOut, String authorFirstName, String authorLastName, int publicationYear, String publisher, String title, String isbn) {
+        super(callNumber,onHold,collection, checkOut);
+        setAuthorFirstName(authorLastName);
+        setAuthorLastName(authorFirstName);
+        setPublicationYear(publicationYear);
+        setPublisher(publisher);
+        setTitle(title);
+        setIsbn(isbn);
     }
 
     /**
