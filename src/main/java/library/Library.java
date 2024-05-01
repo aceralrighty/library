@@ -67,7 +67,7 @@ public class Library {
     }
 
 
-    public static void LookUpByType() throws InvalidMaterialTypeException, ItemNotAvailableException {
+    public static String LookUpByType() throws InvalidMaterialTypeException, ItemNotAvailableException {
 
 
         System.out.println("Select the type of material:");
@@ -80,11 +80,13 @@ public class Library {
         if (type.isBlank()) {
             throw new InvalidMaterialTypeException("Invalid material!");
         }
+        return type;
     }
-    public static void CheckOutByCallNumber() {
+    public static String CheckOutByCallNumber() {
         System.out.println("Enter the call number you would like to check out:\n");
         String callNumber = scanner.nextLine();
         Inventory.checkoutMaterial(callNumber);
+        return callNumber;
     }
     public static void ReturnByCallNumber() {
         System.out.println("Enter the call number you would like to return:\n");
