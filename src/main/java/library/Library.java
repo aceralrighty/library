@@ -22,53 +22,71 @@ public class Library {
     // only need to call this bad boi once no?
     static Scanner scanner = new Scanner(System.in);
 
-    public static void Options() throws InvalidMaterialTypeException, ItemNotAvailableException {
-        System.out.println("Select an option:");
-        System.out.println("\n1 - See all material in catalog");
-        System.out.println("\n2 - Look up material by call number");
-        System.out.println("\n3 - Look up material by type");
-        System.out.println("\n4 - Check out material by call number");
-        System.out.println("\n5 - Return material by call number");
-        System.out.println("\n6 - See all checked out material");
-        System.out.println("\nX to exit");
-        String options = scanner.nextLine();
-        switch (options) {
-            case "1":
-                Inventory.displayAllInventory();
-                break;
-            case "2":
-                LookUpByCallNumber();
-                break;
-            case "3":
-                LookUpByType();
-                break;
-            case "4":
-                CheckOutByCallNumber();
-                break;
-            case "5":
-                ReturnByCallNumber();
-                break;
-            case "6":
-                Inventory.displayCheckedOutInventory();
-                break;
-            case "X":
+    public static String Options() throws InvalidMaterialTypeException, ItemNotAvailableException {
+        String options = null;
+        try {
+            System.out.println("Select an option:");
+            System.out.println("\n1 - See all material in catalog");
+            System.out.println("\n2 - Look up material by call number");
+            System.out.println("\n3 - Look up material by type");
+            System.out.println("\n4 - Check out material by call number");
+            System.out.println("\n5 - Return material by call number");
+            System.out.println("\n6 - See all checked out material");
+            System.out.println("\nX to exit");
+            options = scanner.nextLine();
+            switch (options) {
+                case "1":
+                    Inventory.displayAllInventory();
+                    break;
+                case "2":
+                    LookUpByCallNumber();
+                    break;
+                case "3":
+                    LookUpByType();
+                    break;
+                case "4":
+                    CheckOutByCallNumber();
+                    break;
+                case "5":
+                    ReturnByCallNumber();
+                    break;
+                case "6":
+                    Inventory.displayCheckedOutInventory();
+                    break;
+                case "X":
+                    System.out.println("Hate to see you go!\n That was a lie, i'm so glad your outta here!");
+                    System.exit(0);
+                    break;
+            }
+        } catch (ItemNotAvailableException e) {
+            System.out.println(e.getMessage());
+        }
+        return options;
+    }
 
-                System.out.println("Hate to see you go!\n That was a lie, i'm so glad your outta here!");
-                System.exit(0);
-                break;
+    public static String LookUpByCallNumber() throws InvalidMaterialTypeException, ItemNotAvailableException {
+        while(true) {
+            try {
+                System.out.println("Please enter the call number you would like to look up");
+                String callNumber = scanner.nextLine();
+                Inventory.getMaterialById(callNumber);
+                if (CallNumberIsValid(callNumber)) {
+                    return callNumber;
+                }
+            } catch(InvalidMaterialTypeException e){
+                throw new InvalidMaterialTypeException("Invalid call number");
+            }
         }
     }
 
-    public static void LookUpByCallNumber() throws ItemNotAvailableException {
+    public static boolean CallNumberIsValid(String callNumber) throws InvalidMaterialTypeException, ItemNotAvailableException {
+        return callNumber != null || callNumber.isBlank();
 
-        System.out.println("Please enter the call number you would like to look up");
-        String callNumber = scanner.nextLine();
-        Inventory.getMaterialById(callNumber);
+
     }
 
 
     public static String LookUpByType() throws InvalidMaterialTypeException, ItemNotAvailableException {
-
 
         System.out.println("Select the type of material:");
         System.out.println("\n1 - Audio book");
@@ -77,7 +95,7 @@ public class Library {
         System.out.println("\n4 - Music");
         String type = String.valueOf(Integer.parseInt(scanner.nextLine()));
         Inventory.getMaterialsByType(Integer.parseInt(type));
-        if (type.isBlank()) {
+        if (type == null || type.isBlank()) {
             throw new InvalidMaterialTypeException("Invalid material!");
         }
         return type;

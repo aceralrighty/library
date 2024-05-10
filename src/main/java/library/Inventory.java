@@ -16,11 +16,12 @@ import java.util.List;
 /**
  * my very lengthy Inventory class
  * i'm very proud of this one
+ *
  * @author Adam Ziv
  */
 
 public class Inventory {
-    private static ArrayList<Material> materials = new ArrayList<>();
+    public static ArrayList<Material> materials = new ArrayList<>();
 
     /**
      * this method loops through Material checking if the call number is true and if checked out is false
@@ -36,6 +37,7 @@ public class Inventory {
             }
         }
     }
+
     private static String[] TYPES_CLASS_NAMES = new String[]{
             "AUDIO_BOOK", "BOOK", "MOVIE", "MUSIC"
     };
@@ -47,7 +49,7 @@ public class Inventory {
      * @param materialType
      * @return
      */
-    public static void getMaterialsByType(int materialType) throws ItemNotAvailableException {
+    public static int getMaterialsByType(int materialType) throws ItemNotAvailableException, InvalidMaterialTypeException {
         boolean isFound = false;
         Collection numType = Collection.valueOf(TYPES_CLASS_NAMES[materialType - 1]);
         for (Material material : materials) {
@@ -58,8 +60,9 @@ public class Inventory {
         }
         if (!isFound) {
             System.out.println("nothing was found");
-            throw new ItemNotAvailableException(STR."We could not find any material of type \{materialType}");
+            throw new InvalidMaterialTypeException(STR."We could not find any material of type \{materialType}");
         }
+        return materialType;
     }
 
     /**
@@ -68,13 +71,14 @@ public class Inventory {
      *
      * @param material
      */
-    public static void returnMaterial(String material) {
+    public static String returnMaterial(String material) {
         for (Material m : materials) {
             if (material.equalsIgnoreCase(m.getCallNumber()) && m.isCheckedOut()) {
                 m.setCheckedOut(false);
                 System.out.println("\n\tMaterial returned!" + m.getCallNumber());
             }
         }
+        return material;
     }
 
     /**
@@ -117,11 +121,13 @@ public class Inventory {
     /**
      * this method grabs the material based on the ID the user puts in.
      * similar to the method that grabs material by type
+     *
      * @param materialId
+     * @return
      * @throws ItemNotAvailableException
      */
 
-    public static void getMaterialById(String materialId) throws ItemNotAvailableException {
+    public static short getMaterialById(String materialId) throws ItemNotAvailableException {
         for (Material material : materials) {
             if (materialId.equalsIgnoreCase(material.getCallNumber())) {
                 System.out.println(material);
@@ -129,12 +135,15 @@ public class Inventory {
                 throw new ItemNotAvailableException("This material does not exist");
             }
         }
+        return 0;
     }
 
     /**
      * this method displays all the inventory that was checked out
+     *
+     * @return
      */
-    public static void displayCheckedOutInventory() {
+    public static short displayCheckedOutInventory() {
         System.out.println("All items that are currently checked out: \n");
         for (Material material : materials) {
             if (material.isCheckedOut()) {
@@ -145,12 +154,13 @@ public class Inventory {
 \tIs is not checked out!""");
             }
         }
+        return 0;
     }
 
     /**
      * Mock inventory data
      */
-    public static void addToMaterial() {
+    public static Inventory addToMaterial() {
         Inventory.addMaterial(new PrintBook("WD40", Collection.BOOK, false, false, "David", "Goggins",
                 2016, "Penguin publishing", "Can't Hurt Me", "132333333333", 350));
 
@@ -159,9 +169,10 @@ public class Inventory {
                 "Mitsuo Iwata, Nozomu Sasaki, Mami Koyama", new ArrayList<>(List.of(MovieGenre.ACTION_AND_ADVENTURE, MovieGenre.SCIENCE_FICTION))));
 
         Inventory.addMaterial(new Music("782", false, Collection.MUSIC, true, "Hell freezes over", 43,
-                MusicGenre.CLASSIC_ROCK, null, null, new String[]{"Get over it(3:29","Love will keep alive (4:00", "Hotel California (6:54",
-        "Learn to be still (4:27)", "Take it easy (4.36)", "Desparado (4:15)"}, "The Eagles"));
+                MusicGenre.CLASSIC_ROCK, null, null, new String[]{"Get over it(3:29", "Love will keep alive (4:00", "Hotel California (6:54",
+                "Learn to be still (4:27)", "Take it easy (4.36)", "Desparado (4:15)"}, "The Eagles"));
         Inventory.addMaterial(new AudioBook("W6L36", Collection.AUDIO_BOOK, false, true, "Billy", "Bobber", 1998, "Random House", "Tale of Two Cities", "9781524779276", "Timothy", "Borbsky", 236));
+        return Inventory.addToMaterial();
     }
 
 

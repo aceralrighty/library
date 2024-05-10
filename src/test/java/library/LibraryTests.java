@@ -8,16 +8,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 
 public class LibraryTests {
-    private  void mockScannerInput(){
-//        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
-//        System.setIn(in);
+    private  void mockScannerInput(String input){
+   ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+      System.setIn(in);
     }
 
     @Test
-    public void whenLookUpByTypeIsInvalid_thenThrowsException() throws ItemNotAvailableException, InvalidMaterialTypeException {
-        String IdLookUp = Library.LookUpByType();
-
-        assertEquals("Invalid material!", Library.CheckOutByCallNumber());
+    public void callNumberInput() throws ItemNotAvailableException, InvalidMaterialTypeException {
+       mockScannerInput("234W");
+       assertEquals("234W", Library.LookUpByCallNumber());
+    }
+    @Test
+   public void callNumberExt_ThrowsException() throws ItemNotAvailableException, InvalidMaterialTypeException {
+        mockScannerInput("X");
+        assertThrows(RuntimeException.class, Library::Options);
     }
 
 }
